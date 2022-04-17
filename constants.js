@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const TOKEN = process.env.TOKEN;
 const PREFIX = process.env.PREFIX;
 const MONGODB_URL = process.env.MONGODB_URL;
@@ -14,7 +16,7 @@ const config = {
   lotteryOdds: LOTTERY_ODDS,
 };
 
-modules.exports = {
+module.exports = {
   TOKEN,
   PREFIX,
   MONGODB_URL,
