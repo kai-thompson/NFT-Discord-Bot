@@ -1,27 +1,27 @@
-const { removeWhitelist } = require("../database/mongoose");
-const { isValidAddress } = require("../helpers/isValidAddress");
-const { ROLE_ADMIN } = require("../constants");
+const { removeWhitelist } = require('../database/mongoose')
+const { isValidAddress } = require('../helpers/isValidAddress')
+const { ROLE_ADMIN } = require('../constants')
 
 module.exports = {
-  name: "removewallet",
+  name: 'removewallet',
   async run(client, message, args) {
     try {
-      const input = args[0];
-      const isAddress = isValidAddress(input);
+      const input = args[0]
+      const isAddress = isValidAddress(input)
 
       // If argument passed is eth address, query by address, otherwise query by user id
-      const inputData = isAddress ? { address: input } : { id: input };
+      const inputData = isAddress ? { address: input } : { id: input }
 
       if (!message.member.roles.cache.find((r) => r.name === ROLE_ADMIN)) {
-        return message.reply("Command reserved for admins!");
+        return message.reply('Command reserved for admins!')
       }
 
-      await removeWhitelist(inputData);
+      await removeWhitelist(inputData)
 
-      message.reply(`${input} removed from whitelist.`);
+      message.reply(`${input} removed from whitelist.`)
     } catch (e) {
-      console.log(e);
-      message.reply(e.message);
+      console.error(e)
+      message.reply(e.message)
     }
   },
-};
+}

@@ -1,43 +1,44 @@
-const Whitelist = require("../database/Schema/Whitelist");
+const Whitelist = require('../database/Schema/Whitelist')
 
-module.exports.addWhitelist = async ({ id, address, isAdmin }) => {
+module.exports.addWhitelist = async ({ id, address, username, isAdmin }) => {
   if (!isAdmin && (await this.getWhitelistSpot({ id, address })))
-    throw new Error("User already whitelisted!");
+    throw new Error('User already whitelisted!')
 
   const whitelistSpot = new Whitelist({
     id,
     address,
-  });
+    username,
+  })
 
-  await whitelistSpot.save();
-};
+  await whitelistSpot.save()
+}
 
 module.exports.removeWhitelist = async (inputData) => {
-  const whitelistSpot = await Whitelist.findOne(inputData);
+  const whitelistSpot = await Whitelist.findOne(inputData)
 
-  if (!whitelistSpot) throw new Error("User isn't whitelisted!");
+  if (!whitelistSpot) throw new Error("User isn't whitelisted!")
 
-  await whitelistSpot.remove();
-};
+  await whitelistSpot.remove()
+}
 
 module.exports.changeWhitelist = async ({ address, id, isAdmin }) => {
-  const isAddrWhitelisted = await Whitelist.findOne({ address });
-  const whitelistSpot = await Whitelist.findOne({ id });
+  const isAddrWhitelisted = await Whitelist.findOne({ address })
+  const whitelistSpot = await Whitelist.findOne({ id })
 
-  if (isAddrWhitelisted) throw new Error("Address already whitelisted!");
-  if (isAdmin && !whitelistSpot) throw new Error("User isn't whitelisted!");
+  if (isAddrWhitelisted) throw new Error('Address already whitelisted!')
+  if (isAdmin && !whitelistSpot) throw new Error("User isn't whitelisted!")
 
-  whitelistSpot.address = address;
+  whitelistSpot.address = address
 
-  await whitelistSpot.save();
-};
+  await whitelistSpot.save()
+}
 
 module.exports.getWhitelistSpot = async ({ id, address }) => {
-  const whitelistSpot = await Whitelist.findOne({ $or: [{ id }, { address }] });
+  const whitelistSpot = await Whitelist.findOne({ $or: [{ id }, { address }] })
 
-  return whitelistSpot;
-};
+  return whitelistSpot
+}
 
 module.exports.listAllWhitelist = async () => {
-  return await Whitelist.find({}, { address: 1, _id: 0 });
-};
+  return await Whitelist.find({}, { address: 1, _id: 0 })
+}
