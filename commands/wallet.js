@@ -4,7 +4,7 @@ const { isAdmin, isWhitelisted } = require('../helpers/isRole')
 
 module.exports = {
   name: 'wallet',
-  async run (client, message, args) {
+  async run(client, message, args) {
     try {
       const address = args[0]
       const userID = message.member.id

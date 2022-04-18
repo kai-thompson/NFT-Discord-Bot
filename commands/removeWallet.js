@@ -3,7 +3,7 @@ const { isValidAddress } = require('../helpers/isValidAddress')
 
 module.exports = {
   name: 'removewallet',
-  async run (client, message, args) {
+  async run(client, message, args) {
     try {
       const adminRole = client.config.adminRole
       const input = args[0]

@@ -1,6 +1,6 @@
 module.exports = {
   name: 'lottery',
-  run (client, message, args) {
+  run(client, message, args) {
     try {
       const lotteryOdds = client.config.lotteryOdds
       const whitelistRole = client.config.whitelistRole

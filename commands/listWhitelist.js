@@ -3,7 +3,7 @@ const { isAdmin } = require('../helpers/isRole')
 
 module.exports = {
   name: 'listwhitelist',
-  async run (client, message, args) {
+  async run(client, message, args) {
     try {
       if (!isAdmin(message)) {
         return message.reply('Command reserved for admins!')

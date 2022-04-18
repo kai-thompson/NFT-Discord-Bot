@@ -1,7 +1,9 @@
 const Whitelist = require('../database/Schema/Whitelist')
 
 module.exports.addWhitelist = async ({ id, address, username, isAdmin }) => {
-  if (!isAdmin && (await Whitelist.findOne({ id, address }))) { throw new Error('User already whitelisted!') }
+  if (!isAdmin && (await Whitelist.findOne({ $or: [{ id }, { address }] }))) {
+    throw new Error('User already whitelisted!')
+  }
 
   const whitelistSpot = new Whitelist({
     id,

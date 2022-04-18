@@ -4,7 +4,7 @@ const { isValidAddress } = require('../helpers/isValidAddress')
 
 module.exports = {
   name: 'checkWallet',
-  async run (client, message, args) {
+  async run(client, message, args) {
     try {
       const input = args[0]
       const isAddress = isValidAddress(input)
