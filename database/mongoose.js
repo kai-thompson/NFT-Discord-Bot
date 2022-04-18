@@ -32,8 +32,8 @@ module.exports.changeWhitelist = async ({ address, id, isAdmin }) => {
   await whitelistSpot.save();
 };
 
-module.exports.getWhitelistSpot = async (inputData) => {
-  const whitelistSpot = await Whitelist.findOne(inputData);
+module.exports.getWhitelistSpot = async ({ id, address }) => {
+  const whitelistSpot = await Whitelist.findOne({ $or: [{ id }, { address }] });
 
   return whitelistSpot;
 };
