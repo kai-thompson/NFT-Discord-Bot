@@ -21,8 +21,8 @@ module.exports.removeWhitelist = async (inputData) => {
 };
 
 module.exports.changeWhitelist = async ({ address, id, isAdmin }) => {
-  const isAddrWhitelisted = await this.getWhitelistSpot({ address });
-  const whitelistSpot = await this.getWhitelistSpot({ id });
+  const isAddrWhitelisted = await Whitelist.findOne({ address });
+  const whitelistSpot = await Whitelist.findOne({ id });
 
   if (isAddrWhitelisted) throw new Error("Address already whitelisted!");
   if (isAdmin && !whitelistSpot) throw new Error("User isn't whitelisted!");
