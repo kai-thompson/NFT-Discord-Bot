@@ -5,8 +5,8 @@ module.exports.addWhitelist = async ({ id, address, isAdmin }) => {
     throw new Error("User already whitelisted!");
 
   const whitelistSpot = new Whitelist({
-    id: userID,
-    address: address,
+    id,
+    address,
   });
 
   await whitelistSpot.save();
