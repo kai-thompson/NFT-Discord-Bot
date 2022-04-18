@@ -1,37 +1,34 @@
 const { addWhitelist } = require("../database/mongoose");
 const { isValidAddress } = require("../helpers/isValidAddress");
+const { isAdmin, isWhitelisted } = require("../helpers/isRole");
 
 module.exports = {
-  name: "addwhitelist",
+  name: "wallet",
   async run(client, message, args) {
     try {
-      const ethAddress = args[0];
+      const address = args[0];
       const userID = message.member.id;
       const username = message.member.user.tag;
-      const whitelistRole = client.config.whitelistRole;
-      const isAdmin = message.member.roles.cache.find(
-        (r) => r.name === client.config.adminRole
-      );
 
-      if (!ethAddress) {
+      if (!address) {
         return message.reply("No address provided!");
       }
       // "Whitelisted" role name subject to change
-      if (!message.member.roles.cache.find((r) => r.name === whitelistRole)) {
+      if (!isWhitelisted(message)) {
         return message.reply("You are not whitelisted!");
       }
-      if (!isValidAddress(ethAddress)) {
+      if (!isValidAddress(address)) {
         return message.reply("Invalid ETH address!");
       }
 
       await addWhitelist({
-        ethAddress,
+        isAdmin: isAdmin(message),
+        address,
         userID,
         username,
-        isAdmin,
       });
 
-      message.reply(`Congrats! ${ethAddress} added to whitelist!`);
+      message.reply(`Congrats! ${address} added to whitelist!`);
     } catch (e) {
       console.log(e);
       message.reply(e.message);

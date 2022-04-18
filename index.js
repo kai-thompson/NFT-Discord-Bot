@@ -2,7 +2,7 @@ const { Client, Intents, Collection } = require("discord.js");
 const { loadCommands } = require("./handlers/loadCommands");
 const { loadEvents } = require("./handlers/loadEvents");
 const { connectMongo } = require("./handlers/connectMongo");
-const {config} = require("./constants");
+const { config } = require("./constants");
 
 const client = new Client({
   intents: [

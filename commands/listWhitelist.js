@@ -1,12 +1,11 @@
 const { listAllWhitelist } = require("../database/mongoose");
+const { isAdmin } = require("../helpers/isRole");
 
 module.exports = {
   name: "listwhitelist",
   async run(client, message, args) {
     try {
-      const adminRole = client.config.adminRole;
-
-      if (!message.member.roles.cache.find((r) => r.name === adminRole)) {
+      if (!isAdmin(message)) {
         return message.reply("Command reserved for admins!");
       }
 
