@@ -3,16 +3,16 @@ const { isAdmin, isWhitelisted } = require("../helpers/isRole");
 const { isValidAddress } = require("../helpers/isValidAddress");
 
 module.exports = {
-  name: "whitelist",
+  name: "checkWallet",
   async run(client, message, args) {
     try {
       const input = args[0];
       const isAddress = isValidAddress(input);
-      const username = message.member.user.tag;
+      const userID = message.member.id;
 
       // If user is an Admin and passes data, check if data is whitelisted
       if (input && isAdmin(message)) {
-        const inputData = isAddress ? { address: input } : { username: input };
+        const inputData = isAddress ? { address: input } : { id: userID };
 
         if (await isWhitelisted(inputData)) {
           return message.reply(`${input} is whitelisted.`);
@@ -21,7 +21,7 @@ module.exports = {
         }
       }
 
-      const wl = await getWhitelistSpot({ username });
+      const wl = await getWhitelistSpot({ id: userID });
 
       // If user isn't an admin, return users status
       if (wl?.address) {

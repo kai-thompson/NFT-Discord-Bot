@@ -9,8 +9,8 @@ module.exports = {
       const input = args[0];
       const isAddress = isValidAddress(input);
 
-      // If argument passed is eth address, query by address, otherwise query by username
-      const inputData = isAddress ? { address: input } : { username: input };
+      // If argument passed is eth address, query by address, otherwise query by user id
+      const inputData = isAddress ? { address: input } : { id: input };
 
       if (!message.member.roles.cache.find((r) => r.name === ROLE_ADMIN)) {
         return message.reply("Command reserved for admins!");

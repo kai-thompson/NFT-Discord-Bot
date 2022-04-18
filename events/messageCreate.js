@@ -16,6 +16,6 @@ module.exports = (client, message) => {
 
     cmd.run(client, message, args);
   } catch (e) {
-    message.channel.send("An unknown error occurred!");
+    message.reply(e.message);
   }
 };

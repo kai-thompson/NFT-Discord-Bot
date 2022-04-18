@@ -8,7 +8,6 @@ module.exports = {
     try {
       const newAddress = args[0];
       const userID = message.member.id;
-      const username = message.member.user.tag;
 
       if (!newAddress) {
         return message.reply("No address provided!");
@@ -24,8 +23,7 @@ module.exports = {
       await changeWhitelist({
         address: newAddress,
         isAdmin: isAdmin(message),
-        userID,
-        username,
+        id: userID,
       });
 
       message.reply(`You changed your whitelist address to: ${newAddress}.`);

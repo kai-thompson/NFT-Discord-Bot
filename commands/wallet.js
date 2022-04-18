@@ -8,7 +8,6 @@ module.exports = {
     try {
       const address = args[0];
       const userID = message.member.id;
-      const username = message.member.user.tag;
 
       if (!address) {
         return message.reply("No address provided!");
@@ -23,9 +22,8 @@ module.exports = {
 
       await addWhitelist({
         isAdmin: isAdmin(message),
+        id: userID,
         address,
-        userID,
-        username,
       });
 
       message.reply(`Congrats! ${address} added to whitelist!`);

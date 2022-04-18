@@ -1,17 +1,11 @@
 const Whitelist = require("../database/Schema/Whitelist");
 
-module.exports.addWhitelist = async ({
-  userID,
-  username,
-  address,
-  isAdmin,
-}) => {
-  if (!isAdmin && (await this.getWhitelistSpot({ userID, username, address })))
+module.exports.addWhitelist = async ({ id, address, isAdmin }) => {
+  if (!isAdmin && (await this.getWhitelistSpot({ id, address })))
     throw new Error("User already whitelisted!");
 
   const whitelistSpot = new Whitelist({
     id: userID,
-    username: username,
     address: address,
   });
 
@@ -26,14 +20,9 @@ module.exports.removeWhitelist = async (inputData) => {
   await whitelistSpot.remove();
 };
 
-module.exports.changeWhitelist = async ({
-  address,
-  username,
-  userID,
-  isAdmin,
-}) => {
+module.exports.changeWhitelist = async ({ address, id, isAdmin }) => {
   const isAddrWhitelisted = await this.getWhitelistSpot({ address });
-  const whitelistSpot = await this.getWhitelistSpot({ username, userID });
+  const whitelistSpot = await this.getWhitelistSpot({ id });
 
   if (isAddrWhitelisted) throw new Error("Address already whitelisted!");
   if (isAdmin && !whitelistSpot) throw new Error("User isn't whitelisted!");
