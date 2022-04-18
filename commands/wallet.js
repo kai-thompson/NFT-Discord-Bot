@@ -4,7 +4,7 @@ const { isAdmin, isWhitelisted } = require('../helpers/isRole')
 
 module.exports = {
   name: 'wallet',
-  async run(client, message, args) {
+  async run (client, message, args) {
     try {
       const address = args[0]
       const userID = message.member.id
@@ -25,7 +25,7 @@ module.exports = {
         isAdmin: isAdmin(message),
         id: userID,
         address,
-        username,
+        username
       })
 
       message.reply(`Congrats! ${address} added to whitelist!`)
@@ -33,5 +33,5 @@ module.exports = {
       console.error(e)
       message.reply(e.message)
     }
-  },
+  }
 }

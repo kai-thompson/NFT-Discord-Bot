@@ -1,5 +1,5 @@
 module.exports = {
-  trailingComma: 'es5',
+  trailingComma: 'none',
   bracketSpacing: true,
   tabWidth: 2,
   semi: false,
@@ -9,8 +9,8 @@ module.exports = {
     {
       files: 'Routes.*',
       options: {
-        printWidth: 999,
-      },
-    },
-  ],
+        printWidth: 999
+      }
+    }
+  ]
 }

@@ -4,7 +4,7 @@ const { isAdmin, isWhitelisted } = require('../helpers/isRole')
 
 module.exports = {
   name: 'changewallet',
-  async run(client, message, args) {
+  async run (client, message, args) {
     try {
       const newAddress = args[0]
       const userID = message.member.id
@@ -23,7 +23,7 @@ module.exports = {
       await changeWhitelist({
         address: newAddress,
         isAdmin: isAdmin(message),
-        id: userID,
+        id: userID
       })
 
       message.reply(`You changed your whitelist address to: ${newAddress}.`)
@@ -31,5 +31,5 @@ module.exports = {
       console.error(e)
       message.reply(e.message)
     }
-  },
+  }
 }

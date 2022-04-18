@@ -13,5 +13,5 @@ const loadCommands = (client) => {
 }
 
 module.exports = {
-  loadCommands,
+  loadCommands
 }

@@ -13,7 +13,7 @@ const config = {
   mongoURL: MONGODB_URL,
   adminRole: ROLE_ADMIN,
   whitelistRole: ROLE_WHITELIST,
-  lotteryOdds: LOTTERY_ODDS,
+  lotteryOdds: LOTTERY_ODDS
 }
 
 module.exports = {
@@ -23,5 +23,5 @@ module.exports = {
   ROLE_ADMIN,
   ROLE_WHITELIST,
   LOTTERY_ODDS,
-  config,
+  config
 }

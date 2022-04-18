@@ -10,5 +10,5 @@ const isWhitelisted = (message) => {
 
 module.exports = {
   isAdmin,
-  isWhitelisted,
+  isWhitelisted
 }

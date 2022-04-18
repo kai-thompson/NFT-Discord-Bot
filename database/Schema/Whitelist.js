@@ -6,6 +6,6 @@ module.exports = mongoose.model(
     id: { type: String, required: true },
     address: { type: String, required: true },
     username: { type: String },
-    whiteListedAt: { type: Number, default: Date.now() },
+    whiteListedAt: { type: Number, default: Date.now() }
   })
 )

@@ -14,5 +14,5 @@ const loadEvents = (client) => {
 }
 
 module.exports = {
-  loadEvents,
+  loadEvents
 }
