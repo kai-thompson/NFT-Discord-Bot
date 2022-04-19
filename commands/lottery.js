@@ -2,10 +2,11 @@ module.exports = {
   name: 'lottery',
   run(client, message, args) {
     try {
-      const { lotteryOdds, whitelistRole, lotteryChannel } =
-        client.config.lotteryOdds
+      const { lotteryOdds, whitelistRole, lotteryChannel } = client.config
       const username = message.member.user.tag
       const isWinner = Math.floor(Math.random() * lotteryOdds) === 0
+
+      console.log(lotteryChannel)
 
       if (message.channel.name !== lotteryChannel) return
 
