@@ -6,6 +6,7 @@ const MONGODB_URL = process.env.MONGODB_URL
 const ROLE_ADMIN = process.env.ROLE_ADMIN
 const ROLE_WHITELIST = process.env.ROLE_WHITELIST
 const LOTTERY_ODDS = process.env.LOTTERY_ODDS
+const LOTTERY_CHANNEL = process.env.LOTTERY_CHANNEL
 
 const config = {
   token: TOKEN,
@@ -13,7 +14,8 @@ const config = {
   mongoURL: MONGODB_URL,
   adminRole: ROLE_ADMIN,
   whitelistRole: ROLE_WHITELIST,
-  lotteryOdds: LOTTERY_ODDS
+  lotteryOdds: LOTTERY_ODDS,
+  lotteryChannel: LOTTERY_CHANNEL
 }
 
 module.exports = {
@@ -23,5 +25,6 @@ module.exports = {
   ROLE_ADMIN,
   ROLE_WHITELIST,
   LOTTERY_ODDS,
+  LOTTERY_CHANNEL,
   config
 }

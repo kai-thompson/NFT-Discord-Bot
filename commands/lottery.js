@@ -2,10 +2,12 @@ module.exports = {
   name: 'lottery',
   run(client, message, args) {
     try {
-      const lotteryOdds = client.config.lotteryOdds
-      const whitelistRole = client.config.whitelistRole
+      const { lotteryOdds, whitelistRole, lotteryChannel } =
+        client.config.lotteryOdds
       const username = message.member.user.tag
       const isWinner = Math.floor(Math.random() * lotteryOdds) === 0
+
+      if (message.channel.name !== lotteryChannel) return
 
       if (isWinner) {
         message.member.roles.add(
