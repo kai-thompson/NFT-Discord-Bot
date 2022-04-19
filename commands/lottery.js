@@ -6,8 +6,6 @@ module.exports = {
       const username = message.member.user.tag
       const isWinner = Math.floor(Math.random() * lotteryOdds) === 0
 
-      console.log(lotteryChannel)
-
       if (message.channel.name !== lotteryChannel) return
 
       if (isWinner) {
