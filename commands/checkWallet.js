@@ -12,9 +12,9 @@ module.exports = {
 
       // If user is an Admin and passes data, check if data is whitelisted
       if (input && isAdmin(message)) {
-        const inputData = isAddress ? { address: input } : { id: userID }
+        const inputData = isAddress ? { address: input } : { id: input }
 
-        if (await isWhitelisted(inputData)) {
+        if (await getWhitelistSpot(inputData)) {
           return message.reply(`${input} is whitelisted.`)
         } else {
           return message.reply(`${input} isn't whitelisted.`)
